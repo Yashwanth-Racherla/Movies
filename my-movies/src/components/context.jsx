@@ -1,20 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 
-const API = `http://www.omdbapi.com/?i=tt3896198&apikey=216f3dbf&s=Doctor Strange`;
+const API = `http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_API_KEY}`;
 
 const MyContext = React.createContext();
 
 const MyProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState({ show: false, msg: "" });
+  const [queryName, setQueryName] = useState("Avengers");
 
-  const getMoviesData = async () => {
+  const getMoviesData = async (url) => {
     try {
-      const moviesData = await fetch(API);
+      const moviesData = await fetch(url);
       const data = await moviesData.json();
+      console.log(data);
+
       if (data.Response === "True") {
         setIsLoading(false);
         setMovies(data.Search);
+      } else {
+        setIsError({ show: true, msg: data.Error });
+        console.log(data);
       }
     } catch (err) {
       console.log(err);
@@ -22,10 +29,18 @@ const MyProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getMoviesData();
-  }, []);
+    const timer = setTimeout(() => {
+      getMoviesData(`${API}&s=${queryName}`);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [queryName]);
+
   return (
-    <MyContext.Provider value={{ isLoading, movies }}>
+    <MyContext.Provider
+      value={{ isLoading, isError, movies, queryName, setQueryName }}
+    >
       {children}
     </MyContext.Provider>
   );
