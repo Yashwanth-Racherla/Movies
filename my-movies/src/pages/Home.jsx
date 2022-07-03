@@ -1,37 +1,62 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { useGlobalContext } from "../components/context";
 
 const Home = () => {
-  const { movies } = useGlobalContext();
+  const { movies, queryName, setQueryName, isError, isLoading } =
+    useGlobalContext();
+  if (isLoading) {
+    return (
+      <div>
+        <p>isLoading...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-[#f2f4fc] text-[#4a5c6c]">
-      <div className="section-search container">
-        <p>Search Your Favourite Movie</p>
-        <label htmlFor="movie"></label>
-        <input
-          type="text"
-          value="Doctor Strange"
-          id="movie"
-          className="px-4 py-1 border-2 border-[#9cb0c1] "
-        />
-      </div>
+    <div>
+      <section className="section-search container">
+        <div>
+          <h2 className="font-bold text-xl">Search Your Favourite Movie</h2>
+          <form action="#" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="text"
+              placeholder="Search Movie"
+              value={queryName}
+              onChange={(e) => setQueryName(e.target.value)}
+            />
+          </form>
+        </div>
+        <div>
+          <p>{isError.show && isError.msg}</p>
+        </div>
+        {isLoading && (
+          <div className="mt-10">
+            <p>isLoading...</p>
+          </div>
+        )}
+      </section>
 
-      <div className="section-movies container ">
-        {movies.map((movie) => {
-          const { Title, Poster, Type, Year, imdbID } = movie;
+      <section className="section-movies container ">
+        {movies?.map((movie) => {
+          const { Title, Poster, imdbID } = movie;
+          const movieTitle = Title.substring(0, 15);
           return (
-            <div className="border-2 border-black rounded-xl p-8 " key={imdbID}>
-              <h3 className="font-bold text-xl mb-2 text-center">{Title}</h3>
-              <img
-                className="w-4/5 h-4/5 rounded-xl"
-                src={Poster}
-                alt={imdbID}
-              />
-            </div>
+            <NavLink to={`/Movie/${imdbID}`} key={imdbID}>
+              <div className="border-2 border-black rounded-xl p-8 flex flex-col items-center ">
+                <h3 className="font-bold text-xl mb-2 text-center">
+                  {Title.length >= 15 ? `${movieTitle}...` : movieTitle}
+                </h3>
+                <img
+                  className="w-4/5 h-4/5 rounded-xl"
+                  src={Poster}
+                  alt={imdbID}
+                />
+              </div>
+            </NavLink>
           );
         })}
-      </div>
+      </section>
     </div>
   );
 };
