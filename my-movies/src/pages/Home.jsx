@@ -8,7 +8,7 @@ const Home = () => {
   if (isLoading) {
     return (
       <div>
-        <p>isLoading...</p>
+        <p>isLoading....</p>
       </div>
     );
   }
