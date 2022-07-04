@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 const MovieInfo = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const API = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
 
@@ -15,7 +15,7 @@ const MovieInfo = () => {
       console.log(data);
 
       if (data.Response === "True") {
-        setIsLoading(false);
+        // setIsLoading(false);
         setMovie(data);
         console.log(movie);
       }
@@ -31,6 +31,7 @@ const MovieInfo = () => {
     return () => {
       clearTimeout(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   //   if (isLoading) {
