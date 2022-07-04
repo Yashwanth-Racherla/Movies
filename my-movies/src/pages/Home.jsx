@@ -5,13 +5,6 @@ import { useGlobalContext } from "../components/context";
 const Home = () => {
   const { movies, queryName, setQueryName, isError, isLoading } =
     useGlobalContext();
-  if (isLoading) {
-    return (
-      <div>
-        <p>isLoading...</p>
-      </div>
-    );
-  }
 
   return (
     <div>
