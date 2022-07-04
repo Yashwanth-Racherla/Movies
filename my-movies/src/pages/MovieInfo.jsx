@@ -6,7 +6,7 @@ const MovieInfo = () => {
   const [movie, setMovie] = useState({});
   // const [isLoading, setIsLoading] = useState(true);
 
-  const API = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
+  const API = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
 
   const getMovieData = async (url) => {
     try {
