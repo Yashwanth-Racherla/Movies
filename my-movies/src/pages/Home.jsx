@@ -22,7 +22,9 @@ const Home = () => {
           </form>
         </div>
         <div>
-          <p>{isError.show && isError.msg}</p>
+          <p className="text-red-800 font-bold">
+            {isError.show && isError.msg}
+          </p>
         </div>
       </section>
 
