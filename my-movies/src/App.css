@@ -2,35 +2,54 @@ body {
   @apply bg-[#f2f4fc] text-[#4a5c6c];
 }
 .container {
-  @apply w-[90%] max-w-[1200px] mx-auto;
+  @apply w-[90%] max-w-[1400px] mx-auto;
 }
 .section-search {
   @apply py-14 text-center;
 }
-.section-movies {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8;
-}
 .section-search input {
   @apply font-semibold px-4 py-2 my-4 border-2 border-[#9cb0c1] rounded-full;
 }
-.movie-details {
-  @apply bg-[#4a5c6c] w-full min-h-screen flex justify-center items-center;
+.section-movies {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 my-10;
 }
-.movie-card {
+
+.movie-card-main {
   @apply py-10 w-4/5 ts:w-3/5 sm:w-1/2 lg:w-3/5 mx-auto flex flex-col justify-center lg:flex-row;
 }
-.movie-poster {
+.movie-poster-main {
   @apply max-h-[500px] lg:w-2/5 rounded-t-[50px] lg:rounded-t-none lg:rounded-l-[50px];
 }
-.movie-info {
+.movie-info-main {
   font-family: "Poppins, sans-serif";
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  @apply lg:w-3/5 text-xl font-bold bg-[#f2f4fc] p-4 rounded-b-[50px] lg:rounded-b-none lg:rounded-r-[50px] flex flex-col gap-2 justify-center;
+  @apply lg:w-3/5 lg:text-xl font-bold bg-[#f2f4fc] p-4 rounded-b-[50px] lg:rounded-b-none lg:rounded-r-[50px] flex flex-col justify-between;
 }
+
 .button {
   @apply px-9 py-3 border-2 border-black rounded-md block mx-auto mt-2 lg:inline
   hover:bg-[#4a5c6c] hover:text-white;
 }
 .loading {
   @apply w-full h-screen flex justify-center items-center;
+}
+
+.movie-card {
+  @apply h-[450px] border-2 border-black rounded-xl p-10 flex flex-col items-center transition-all duration-500;
+}
+.movie-card-title {
+  @apply font-bold text-xl mb-2 text-center transition-transform duration-700 h-[10%];
+}
+.movie-card-poster {
+  @apply rounded-xl transition-all duration-500 ease-in-out h-[90%];
+}
+
+.movie-card:hover {
+  @apply bg-[#4a5c6c] text-white;
+}
+.movie-card:hover .movie-card-poster {
+  @apply scale-[120%];
+}
+.movie-card:hover .movie-card-title {
+  @apply -translate-y-[30px];
 }

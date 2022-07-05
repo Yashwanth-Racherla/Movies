@@ -19,6 +19,7 @@ const MyProvider = ({ children }) => {
       if (data.Response === "True") {
         setIsLoading(false);
         setMovies(data.Search);
+        setIsError({ show: false, msg: "" });
       } else {
         setIsError({ show: true, msg: data.Error });
         console.log(data);
