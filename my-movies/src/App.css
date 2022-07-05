@@ -13,3 +13,16 @@ body {
 .section-search input {
   @apply font-semibold px-4 py-2 my-4 border-2 border-[#9cb0c1] rounded-full;
 }
+.movie-info {
+  font-family: "Poppins, sans-serif";
+  @apply text-lg text-black font-normal bg-[#f2f4fc];
+}
+.movie-info p {
+  @apply mb-2;
+}
+.button {
+  @apply px-9 py-3 border-2 border-black rounded-md block mx-auto lg:inline mt-4;
+}
+.loading {
+  @apply w-full h-screen flex justify-center items-center;
+}
