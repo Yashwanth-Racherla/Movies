@@ -38,12 +38,12 @@ const MovieInfo = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <section className="movie-details ">
-      <div className=" movie-card ">
-        <img className="movie-poster" src={movie?.Poster} alt="poster" />
+    <section className="bg-[#4a5c6c] w-full min-h-screen flex justify-center items-center">
+      <div className=" movie-card-main ">
+        <img className="movie-poster-main" src={movie?.Poster} alt="poster" />
 
-        <div className="movie-info ">
-          <p className="text-2xl text-black">{movie.Title}</p>
+        <div className="movie-info-main ">
+          <p className="text-2xl text-black ">{movie.Title}</p>
           <p>Director : {movie.Director}</p>
           <p>Release Date : {movie.Released}</p>
           <p>Genre : {movie.Genre}</p>

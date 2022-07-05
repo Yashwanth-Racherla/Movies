@@ -37,13 +37,18 @@ const Home = () => {
             const movieTitle = Title.substring(0, 15);
             return (
               <NavLink to={`/Movie/${imdbID}`} key={imdbID}>
-                <div className="border-2 border-black rounded-xl p-8 flex flex-col items-center ">
-                  <h3 className="font-bold text-xl mb-2 text-center">
+                <div className="movie-card">
+                  <h3 className=" movie-card-title ">
                     {Title.length >= 15 ? `${movieTitle}...` : movieTitle}
                   </h3>
+
                   <img
-                    className="w-4/5 h-4/5 rounded-xl"
-                    src={Poster}
+                    className="movie-card-poster"
+                    src={
+                      Poster !== "N/A"
+                        ? Poster
+                        : "http://via.placeholder.com/200x200"
+                    }
                     alt={imdbID}
                   />
                 </div>
