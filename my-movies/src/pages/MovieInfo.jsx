@@ -38,22 +38,17 @@ const MovieInfo = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <section className="bg-[#4a5c6c] w-full h-screen">
-      <div className="w-4/5 sm:w-3/5 mx-auto h-full flex flex-col justify-center lg:flex-row lg:items-center">
-        <img
-          className="movie-image h-2/5 lg:w-2/5 rounded-t-[50px] lg:rounded-t-none lg:rounded-l-[50px]"
-          src={movie?.Poster}
-          alt="pic"
-        />
+    <section className="movie-details ">
+      <div className=" movie-card ">
+        <img className="movie-poster" src={movie?.Poster} alt="poster" />
 
-        <div className="movie-info bg-white min-h-2/5 lg:w-3/5 p-5 rounded-b-[50px] lg:rounded-b-none lg:rounded-r-[50px]">
-          <p>Movie : {movie.Title}</p>
+        <div className="movie-info ">
+          <p className="text-2xl text-black">{movie.Title}</p>
           <p>Director : {movie.Director}</p>
           <p>Release Date : {movie.Released}</p>
           <p>Genre : {movie.Genre}</p>
           <p>IMDB Rating : {movie.imdbRating}</p>
           <p>Language : {movie.Language}</p>
-          <p>Country : {movie.Country}</p>
           <Link to="/">
             <button className="button">Go Back</button>
           </Link>
