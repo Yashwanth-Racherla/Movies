@@ -44,6 +44,7 @@ const MovieInfo = () => {
 
         <div className="movie-info-main ">
           <p className="text-2xl text-black ">{movie.Title}</p>
+          <p>Actors : {movie.Actors}</p>
           <p>Director : {movie.Director}</p>
           <p>Release Date : {movie.Released}</p>
           <p>Genre : {movie.Genre}</p>
