@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useGlobalContext } from "../components/context";
 import Loading from "../components/loading";
 
 const Home = () => {
-  const { movies, queryName, setQueryName, isError, isLoading } =
-    useGlobalContext();
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState({ show: false, msg: "" });
+  const [queryName, setQueryName] = useState("Superman");
+
+  const API = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
+
+  const getMoviesData = async (url) => {
+    try {
+      const moviesData = await fetch(url);
+      const data = await moviesData.json();
+      console.log(data);
+
+      if (data.Response === "True") {
+        setIsLoading(false);
+        setMovies(data.Search);
+        setIsError({ show: false, msg: "" });
+      } else {
+        setIsError({ show: true, msg: data.Error });
+        console.log(data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getMoviesData(`${API}&s=${queryName}`);
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryName]);
 
   return (
     <div>

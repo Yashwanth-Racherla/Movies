@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { MyProvider } from './components/context';
+import ScrollToTop from "./components/scrollToTop"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <MyProvider>
+  <React.StrictMode>  
       <Router>
+      <ScrollToTop>
         <App />
-      </Router>
-    </MyProvider>
+        </ScrollToTop>
+      </Router>    
   </React.StrictMode>
 );
